@@ -1,4 +1,4 @@
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 import argparse
 import pathlib
@@ -55,7 +55,7 @@ parser.add_argument("-i", "--indent",
                     type=int,
                     default=2,
                     help="Indentation level given in spaces")
-norm_action = parser.add_argument("-n", "--norm",
+parser.add_argument("-n", "--norm",
                     action="store_true",
                     help="Normalize duplicate delimiters")
 format_action = parser.add_argument("-f", "--format",
@@ -122,8 +122,6 @@ else:
             converter = get_default_converter()
             convert_keys_into(converter, data, result)
             data = result
-        else:
-            parser.error(f"format flag not present while not using {norm_action.choices}")
     elif n_format_flags != 1:
         format_flags_present: list[str] = [
             f"--{choice}"
