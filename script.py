@@ -1,4 +1,4 @@
-__version__ = "0.3.1"
+__version__ = "0.3.2"
 
 import argparse
 import pathlib
@@ -67,7 +67,8 @@ for function in converter_functions:
     parser.add_argument(f"-{char}", f"--{name}",
                         action="store_true",
                         help=f"Convert keys to {name}")
-args = parser.parse_args() # type: ParserArgs  # type: ignore
+args = ParserArgs()
+parser.parse_args(namespace=args) # populate namespace
 
 full_path = pathlib.Path(args.path).resolve()
 
