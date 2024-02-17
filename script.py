@@ -1,4 +1,4 @@
-__version__ = "0.3.2"
+__version__ = "0.3.3"
 
 import argparse
 import pathlib
@@ -54,12 +54,14 @@ parser.add_argument("-v", "--version",
 parser.add_argument("-i", "--indent",
                     type=int,
                     default=2,
-                    help="Indentation level given in spaces")
+                    metavar="[size]",
+                    help="Indentation size given in spaces. Defaults to 2")
 parser.add_argument("-n", "--norm",
                     action="store_true",
                     help="Normalize duplicate delimiters")
 format_action = parser.add_argument("-f", "--format",
                     choices=converter_mappings.keys(),
+                    metavar="{" + ", ".join(converter_mappings.keys()) + "}", # adds space after comma
                     help="Select method used to convert keys")
 for function in converter_functions:
     char = function.__name__[0]
