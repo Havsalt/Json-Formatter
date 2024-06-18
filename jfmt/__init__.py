@@ -1,5 +1,6 @@
 """
 jfmt
+----
 
 Indent structure and format keys in your deeply nested .json
 """
