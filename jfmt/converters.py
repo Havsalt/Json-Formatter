@@ -1,4 +1,4 @@
-from annotations import Converter as _Converter
+from .annotations import Converter as _Converter
 
 
 _EMPTY = ""
@@ -13,15 +13,21 @@ def get_default_converter() -> _Converter:
 
 def get_norm_converter(function: _Converter) -> _Converter:
     # NOTE: globals from this' module namespace
-    return globals().get(function.__name__ + _NORM_SUFFIX, get_default_converter())
+    return globals().get(
+        function.__name__ + _NORM_SUFFIX,
+        get_default_converter()
+    )
 
 
 def norm(string: str) -> str:
-    return (string.replace(2*_KEBAB, _KEBAB)
-                  .replace(2*_KEBAB, _KEBAB)
-                  .replace(2*_TAIL, _TAIL)
-                  .replace(2*_TAIL, _TAIL)
-                  .strip(_KEBAB + _TAIL))
+    return (
+        string
+        .replace(2*_KEBAB, _KEBAB)
+        .replace(2*_KEBAB, _KEBAB)
+        .replace(2*_TAIL, _TAIL)
+        .replace(2*_TAIL, _TAIL)
+        .strip(_KEBAB + _TAIL)
+    )
 
 
 def snake(string: str) -> str:
@@ -38,10 +44,13 @@ def snake(string: str) -> str:
 
 
 def snake_norm(string: str) -> str:
-    return (snake(string).replace(_KEBAB, _TAIL)
-                         .replace(2*_TAIL, _TAIL)
-                         .replace(2*_TAIL, _TAIL)
-                         .strip(_KEBAB + _TAIL))
+    return (
+        snake(string)
+        .replace(_KEBAB, _TAIL)
+        .replace(2*_TAIL, _TAIL)
+        .replace(2*_TAIL, _TAIL)
+        .strip(_KEBAB + _TAIL)
+    )
 
 
 def camal(string: str) -> str:
@@ -80,9 +89,12 @@ def kebab(string: str) -> str:
 
 
 def kebab_norm(string: str) -> str:
-    return (kebab(string).replace(2*_KEBAB, _KEBAB)
-                         .replace(2*_KEBAB, _KEBAB)
-                         .strip(_KEBAB + _TAIL))
+    return (
+        kebab(string)
+        .replace(2*_KEBAB, _KEBAB)
+        .replace(2*_KEBAB, _KEBAB)
+        .strip(_KEBAB + _TAIL)
+    )
 
 
 def pascal(string: str) -> str:
